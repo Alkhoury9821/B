@@ -1,7 +1,7 @@
 package com.example.B.CompanyService;
 
 import com.example.B.Model.Company;
-import com.example.B.Model.Order;
+import com.example.B.Model.Orders;
 import com.example.B.Repo.CompanyRepo;
 import com.example.B.Repo.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +18,24 @@ public class CompanyService {
     private OrderRepo orderRepo;
 
 
+    //addCompany
+    public Company addCompany(Company company){
+        return companyRepo.save(company);
+    }
+
     //getCompany
     public Company getCompany(String username){
         return companyRepo.findByUsername(username);
     }
 
-    //b2b
-    public Order B2B (Order order){
-        if (companyRepo.findByUsername(order.getFrom()) == null){
-            return null;
-        }
-        else
+    //B2B
+    public Orders B2B (Orders order){
         return orderRepo.save(order);
     }
 
 
     //B2C
-    public Order B2C (Order order){
+    public Orders B2C (Orders order){
         return orderRepo.save(order);
     }
 }
